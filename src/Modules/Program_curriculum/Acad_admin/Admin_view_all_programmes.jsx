@@ -6,6 +6,7 @@ import {
   Container,
   Button,
   Text,
+  Box,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -18,38 +19,35 @@ function AdminViewProgrammes() {
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
 
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Assuming you have stored the token in localStorage or state
         const token = localStorage.getItem("authToken"); // Replace with actual method to get token
-  
+
         const response = await axios.get(
           "http://127.0.0.1:8000/programme_curriculum/api/admin_programmes/",
           {
             headers: {
-              Authorization: `Token ${token}`,  // Add the Authorization header
+              Authorization: `Token ${token}`, // Add the Authorization header
             },
-          }
+          },
         );
-  
+
         setUgData(response.data.ug_programmes);
         setPgData(response.data.pg_programmes);
         setPhdData(response.data.phd_programmes);
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
+      } catch (fetchErr) {
+        console.error("Error fetching data: ", fetchErr);
         setError("Failed to load data");
         setLoading(false);
       }
     };
-    
+
     fetchData();
   }, []);
-  console.log(ugData)
-  
+  console.log(ugData);
 
   // Function to render the table
   const renderTable = (data) => {
@@ -127,28 +125,45 @@ function AdminViewProgrammes() {
 
   return (
     <MantineProvider theme={{ colorScheme: "light" }} withGlobalStyles>
-      <Container style={{ padding: "20px", minHeight: "100vh", maxWidth: "100%" }}>
-        <Flex mb={20}>
-          <Button
-            variant={activeSection === "ug" ? "filled" : "outline"}
-            onClick={() => setActiveSection("ug")}
-            style={{ marginRight: "10px" }}
-          >
-            UG: Undergraduate
-          </Button>
-          <Button
-            variant={activeSection === "pg" ? "filled" : "outline"}
-            onClick={() => setActiveSection("pg")}
-            style={{ marginRight: "10px" }}
-          >
-            PG: Post Graduate
-          </Button>
-          <Button
-            variant={activeSection === "phd" ? "filled" : "outline"}
-            onClick={() => setActiveSection("phd")}
-          >
-            PhD: Doctor of Philosophy
-          </Button>
+      <Container
+        style={{ padding: "20px", minHeight: "100vh", maxWidth: "100%" }}
+      >
+        <Flex mb={20} style={{ justifyContent: "space-between" }}>
+          <Box>
+            <Button
+              variant={activeSection === "ug" ? "filled" : "outline"}
+              onClick={() => setActiveSection("ug")}
+              style={{ marginRight: "10px" }}
+            >
+              UG: Undergraduate
+            </Button>
+            <Button
+              variant={activeSection === "pg" ? "filled" : "outline"}
+              onClick={() => setActiveSection("pg")}
+              style={{ marginRight: "10px" }}
+            >
+              PG: Post Graduate
+            </Button>
+            <Button
+              variant={activeSection === "phd" ? "filled" : "outline"}
+              onClick={() => setActiveSection("phd")}
+            >
+              PhD: Doctor of Philosophy
+            </Button>
+          </Box>
+
+          <Box>
+            <Link to="/programme_curriculum/acad_admin_add_programme_form">
+              <Button
+                variant="filled"
+                color="blue"
+                radius="md"
+                style={{ marginLeft: "20px", height: "45px" }}
+              >
+                ADD PROGRAMME
+              </Button>
+            </Link>
+          </Box>
         </Flex>
 
         {/* Table Section */}
@@ -302,16 +317,6 @@ function AdminViewProgrammes() {
           </div>
 
           {/* Add Programme Button */}
-          <Link to="/programme_curriculum/acad_admin_add_programme_form">
-            <Button
-              variant="filled"
-              color="blue"
-              radius="md"
-              style={{ marginLeft: "20px", height: "45px" }}
-            >
-              ADD PROGRAMME
-            </Button>
-          </Link>
         </Flex>
       </Container>
     </MantineProvider>

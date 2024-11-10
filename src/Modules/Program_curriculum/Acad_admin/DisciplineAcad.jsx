@@ -17,9 +17,9 @@ function DisciplineAcad() {
           "http://127.0.0.1:8000/programme_curriculum/api/admin_disciplines/",
           {
             headers: {
-              Authorization: `Token ${token}`,  // Add the Authorization header
+              Authorization: `Token ${token}`, // Add the Authorization header
             },
-          }
+          },
         );
         setDisciplines(response.data.disciplines); // Set the data into state
         setLoading(false); // Set loading to false when data is fetched
@@ -41,19 +41,39 @@ function DisciplineAcad() {
       }}
     >
       {/* Header and Button */}
-      <Flex justify="space-between" align="center" style={{ marginTop: "20px" }} mb={20}>
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ marginTop: "20px" }}
+        mb={20}
+      >
         <Button variant="filled" style={{ marginRight: "10px" }}>
           Disciplines
+        </Button>
+
+        <Button
+          style={{
+            backgroundColor: "#007bff",
+            color: "white",
+            width: "15vw",
+            marginLeft: "1.5vw",
+            marginRight: "-22vw",
+          }}
+          onClick={() =>
+            navigate("/programme_curriculum/acad_admin_add_discipline_form")
+          }
+        >
+          ADD DISCIPLINE
         </Button>
       </Flex>
 
       {/* Scrollable and Larger Table */}
-      <Flex style={{ width: "85vw", display: "flex" }}>
+      <Flex style={{ width: "90vw", display: "flex" }}>
         <Table
           highlightOnHover
           verticalSpacing="sm"
           style={{
-            width: "65vw", // Make the table larger by using full width
+            width: "90vw", // Make the table larger by using full width
             border: "2px solid #1e90ff", // Added blue border
             borderRadius: "8px", // Optional: rounded corners for the table
           }}
@@ -88,7 +108,9 @@ function DisciplineAcad() {
                       index % 2 === 0 ? "#fff" : "#15ABFF1C";
                   }}
                 >
-                  <td style={{ padding: "10px", borderRight: "1px solid black" }}>
+                  <td
+                    style={{ padding: "10px", borderRight: "1px solid black" }}
+                  >
                     {item.name} ({item.acronym})
                   </td>
                   <td
@@ -146,20 +168,6 @@ function DisciplineAcad() {
             )}
           </tbody>
         </Table>
-
-        <Button
-          style={{
-            backgroundColor: "#007bff",
-            color: "white",
-            width: "15vw",
-            marginLeft: "1.5vw",
-          }}
-          onClick={() =>
-            navigate("/programme_curriculum/acad_admin_add_discipline_form")
-          }
-        >
-          ADD DISCIPLINE
-        </Button>
       </Flex>
     </Container>
   );
