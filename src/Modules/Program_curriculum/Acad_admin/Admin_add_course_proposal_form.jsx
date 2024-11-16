@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Breadcrumbs,
+  // Breadcrumbs,
   Anchor,
   Select,
   NumberInput,
@@ -14,6 +14,7 @@ import {
   Table,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+// import { Blueprint } from "@phosphor-icons/react";
 
 function Admin_add_course_proposal_form() {
   const form = useForm({
@@ -56,6 +57,7 @@ function Admin_add_course_proposal_form() {
     </Anchor>
   ));
   console.log(form);
+  console.log(breadcrumbItems);
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -105,7 +107,12 @@ function Admin_add_course_proposal_form() {
                   size="xl"
                   weight={700}
                   align="center"
-                  style={{ padding: "10px", borderRadius: "5px" }}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    fontSize: "26px",
+                  }}
+                  c="blue"
                 >
                   Course Form
                 </Text>
@@ -119,17 +126,16 @@ function Admin_add_course_proposal_form() {
                     <tr>
                       <td
                         style={{
-                          border: "2px solid #1976d2",
+                          // border: "2px solid #1976d2",
+                          border: "1px solid grey",
                           padding: "10px",
-                          fontWeight: "bold",
-                          color: "#1976d2",
+                          fontWeight: "500",
+                          // color: "#1976d2",
                         }}
                       >
                         Course Name:
                       </td>
-                      <td
-                        style={{ border: "2px solid #1976d2", padding: "10px" }}
-                      >
+                      <td style={{ border: "1px solid grey", padding: "10px" }}>
                         <TextInput
                           placeholder="Discrete Mathematics"
                           value={form.values.courseName}
@@ -154,17 +160,16 @@ function Admin_add_course_proposal_form() {
                     <tr>
                       <td
                         style={{
-                          border: "2px solid #1976d2",
+                          // border: "2px solid #1976d2",
+                          border: "1px solid grey",
                           padding: "10px",
-                          fontWeight: "bold",
-                          color: "#1976d2",
+                          fontWeight: "500",
+                          // color: "#1976d2",
                         }}
                       >
                         Course Code:
                       </td>
-                      <td
-                        style={{ border: "2px solid #1976d2", padding: "10px" }}
-                      >
+                      <td style={{ border: "1px solid grey", padding: "10px" }}>
                         <TextInput
                           placeholder="NS205c"
                           value={form.values.courseCode}
@@ -189,17 +194,16 @@ function Admin_add_course_proposal_form() {
                     <tr>
                       <td
                         style={{
-                          border: "2px solid #1976d2",
+                          // border: "2px solid #1976d2",
+                          border: "1px solid grey",
                           padding: "10px",
-                          fontWeight: "bold",
-                          color: "#1976d2",
+                          fontWeight: "500",
+                          // color: "#1976d2",
                         }}
                       >
                         Credit:
                       </td>
-                      <td
-                        style={{ border: "2px solid #1976d2", padding: "10px" }}
-                      >
+                      <td style={{ border: "1px solid grey", padding: "10px" }}>
                         <NumberInput
                           placeholder="4"
                           value={form.values.courseCredit}
@@ -221,17 +225,16 @@ function Admin_add_course_proposal_form() {
                     <tr>
                       <td
                         style={{
-                          border: "2px solid #1976d2",
+                          // border: "2px solid #1976d2",
+                          border: "1px solid grey",
                           padding: "10px",
-                          fontWeight: "bold",
-                          color: "#1976d2",
+                          fontWeight: "500",
+                          // color: "#1976d2",
                         }}
                       >
                         Version:
                       </td>
-                      <td
-                        style={{ border: "2px solid #1976d2", padding: "10px" }}
-                      >
+                      <td style={{ border: "1px solid grey", padding: "10px" }}>
                         <TextInput
                           placeholder="1.0"
                           value={form.values.courseVersion}
@@ -257,7 +260,7 @@ function Admin_add_course_proposal_form() {
                 </Table>
 
                 {/* Contact Hours */}
-              <Group
+                <Group
                   grow
                   style={{
                     borderBottom: "2px solid lightblue",
@@ -409,7 +412,7 @@ function Admin_add_course_proposal_form() {
                   }
                   required
                 />
-                 <Group
+                <Group
                   grow
                   style={{
                     borderBottom: "2px solid lightblue",
@@ -420,9 +423,7 @@ function Admin_add_course_proposal_form() {
                     label="Quiz 1"
                     placeholder="3"
                     value={form.values.quiz1}
-                    onChange={(value) =>
-                      form.setFieldValue("quiz1", value)
-                    }
+                    onChange={(value) => form.setFieldValue("quiz1", value)}
                     required
                     styles={{
                       input: {
@@ -439,9 +440,7 @@ function Admin_add_course_proposal_form() {
                     label="Midsem"
                     placeholder="1"
                     value={form.values.midsem}
-                    onChange={(value) =>
-                      form.setFieldValue("midsem", value)
-                    }
+                    onChange={(value) => form.setFieldValue("midsem", value)}
                     required
                     styles={{
                       input: {
@@ -458,9 +457,7 @@ function Admin_add_course_proposal_form() {
                     label="Quiz 2"
                     placeholder="2"
                     value={form.values.quiz2}
-                    onChange={(value) =>
-                      form.setFieldValue("quiz2", value)
-                    }
+                    onChange={(value) => form.setFieldValue("quiz2", value)}
                     required
                     styles={{
                       input: {
@@ -477,9 +474,7 @@ function Admin_add_course_proposal_form() {
                     label="Endsem"
                     placeholder="0"
                     value={form.values.endsem}
-                    onChange={(value) =>
-                      form.setFieldValue("endsem", value)
-                    }
+                    onChange={(value) => form.setFieldValue("endsem", value)}
                     required
                     styles={{
                       input: {
@@ -496,9 +491,7 @@ function Admin_add_course_proposal_form() {
                     label="Project"
                     placeholder="0"
                     value={form.values.project}
-                    onChange={(value) =>
-                      form.setFieldValue("project", value)
-                    }
+                    onChange={(value) => form.setFieldValue("project", value)}
                     required
                     styles={{
                       input: {

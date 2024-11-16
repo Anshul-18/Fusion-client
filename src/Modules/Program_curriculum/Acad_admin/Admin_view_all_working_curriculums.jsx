@@ -10,6 +10,7 @@ import {
   TextInput,
   Grid,
   Paper,
+  ScrollArea,
 } from "@mantine/core";
 
 function Admin_view_all_working_curriculums() {
@@ -29,7 +30,7 @@ function Admin_view_all_working_curriculums() {
             headers: {
               Authorization: `Token ${token}`,
             },
-          }
+          },
         );
         setCurriculums(response.data.curriculums);
         setLoading(false);
@@ -45,7 +46,7 @@ function Admin_view_all_working_curriculums() {
   const filteredData = curriculums.filter(
     (item) =>
       item.name.toLowerCase().includes(searchName.toLowerCase()) &&
-      item.version.toString().includes(searchVersion)
+      item.version.toString().includes(searchVersion),
   );
 
   // Define alternating row colors
@@ -85,7 +86,7 @@ function Admin_view_all_working_curriculums() {
         style={{
           padding: "15px 20px",
           borderRight: "1px solid #d3d3d3",
-          textAlign:"center"
+          textAlign: "center",
         }}
       >
         {element.batch && element.batch.length > 0 ? (
@@ -137,103 +138,115 @@ function Admin_view_all_working_curriculums() {
         <Grid>
           <Grid.Col span={9}>
             {/* Table Section */}
-            <div
+
+            <ScrollArea
+              type="hover"
               style={{
-                height: "500px",
-                overflowY: "auto",
-                border: "1px solid #d3d3d3",
-                borderRadius: "10px",
+                boxShadow: "0px 0px 1px 1px rgba(0, 0, 0, 0.2)",
+                overflow: "auto",
               }}
+              className="no-scrollbar"
             >
-              <Table
+              <div
                 style={{
-                  backgroundColor: "white",
-                  padding: "20px",
-                  flexGrow: 1,
+                  height: "500px",
+                  overflowY: "auto",
+                  border: "2px solid rgb(30, 144, 255)",
+                  borderRadius: "10px",
                 }}
               >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        fontSize: "16px",
-                        textAlign: "center",
-                        borderRight: "1px solid #d3d3d3",
-                      }}
-                    >
-                      Name
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        fontSize: "16px",
-                        textAlign: "center",
-                        borderRight: "1px solid #d3d3d3",
-                      }}
-                    >
-                      Version
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        fontSize: "16px",
-                        textAlign: "center",
-                        borderRight: "1px solid #d3d3d3",
-                      }}
-                    >
-                      Batch
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        fontSize: "16px",
-                        textAlign: "center",
-                        borderRight: "1px solid #d3d3d3",
-                      }}
-                    >
-                      No. of Semesters
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        fontSize: "16px",
-                        textAlign: "center",
-                      }}
-                    >
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {loading ? (
+                <Table
+                  highlightOnHover
+                  verticalSpacing="sm"
+                  style={{
+                    backgroundColor: "white",
+                    padding: "20px",
+                    flexGrow: 1,
+                  }}
+                >
+                  <thead>
                     <tr>
-                      <td colSpan="5" style={{ textAlign: "center" }}>
-                        Loading...
-                      </td>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          fontSize: "16px",
+                          textAlign: "center",
+                          borderRight: "1px solid #d3d3d3",
+                        }}
+                      >
+                        Name
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          fontSize: "16px",
+                          textAlign: "center",
+                          borderRight: "1px solid #d3d3d3",
+                        }}
+                      >
+                        Version
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          fontSize: "16px",
+                          textAlign: "center",
+                          borderRight: "1px solid #d3d3d3",
+                        }}
+                      >
+                        Batch
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          fontSize: "16px",
+                          textAlign: "center",
+                          borderRight: "1px solid #d3d3d3",
+                        }}
+                      >
+                        No. of Semesters
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          fontSize: "16px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Actions
+                      </th>
                     </tr>
-                  ) : rows.length > 0 ? (
-                    rows
-                  ) : (
-                    <tr>
-                      <td colSpan="5" style={{ textAlign: "center" }}>
-                        No curriculums found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </Table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {loading ? (
+                      <tr>
+                        <td colSpan="5" style={{ textAlign: "center" }}>
+                          Loading...
+                        </td>
+                      </tr>
+                    ) : rows.length > 0 ? (
+                      rows
+                    ) : (
+                      <tr>
+                        <td colSpan="5" style={{ textAlign: "center" }}>
+                          No curriculums found
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </Table>
+              </div>
+            </ScrollArea>
           </Grid.Col>
 
           <Grid.Col span={3}>
@@ -270,6 +283,18 @@ function Admin_view_all_working_curriculums() {
           </Grid.Col>
         </Grid>
       </Container>
+
+      <style>{`
+        .no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Edge */
+}
+
+      `}</style>
     </MantineProvider>
   );
 }
