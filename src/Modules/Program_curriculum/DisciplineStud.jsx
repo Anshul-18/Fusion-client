@@ -137,7 +137,10 @@ function DisciplineStud() {
         style={{ marginBottom: "20px" }}
       >
         {/* Discipline Heading */}
-        <Button variant="filled" style={{ marginTop: "20px" }}>
+        <Button
+          variant="filled"
+          style={{ marginTop: "20px", marginLeft: "5px" }}
+        >
           Discipline
         </Button>
 
@@ -157,6 +160,7 @@ function DisciplineStud() {
           borderRadius: "5px",
           // margin: "20px 0 0 0",
           marginTop: "22px",
+          margin: "5px",
         }}
         mr={25}
       >
