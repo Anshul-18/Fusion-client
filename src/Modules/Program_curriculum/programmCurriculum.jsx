@@ -44,8 +44,8 @@ import InstigateForm from "./Acad_admin/Instigate_form";
 import AdminEditProgrammeForm from "./Acad_admin/Admin_edit_programme_form";
 import AdminEditCurriculumForm from "./Acad_admin/Admin_edit_curriculum_form";
 import AdminEditCourseSlotForm from "./Acad_admin/Admin_edit_course_slot_form";
-// import Acad_admin_course_intructor_form from "./Acad_admin/Acad_admin_course_instructor_form";
-// import Acad_admin_course_instructors from "./Acad_admin/Acad_admin_course_instructors";
+import AcadAdminCourseInstructorForm from "./Acad_admin/Acad_admin_course_instructor_form";
+import AcadAdminCourseInstructor from "./Acad_admin/Acad_admin_course_instructors";
 
 // breadcrumb
 // import BreadCrumbs from "./BreadCrumbsPorgrammeCurriculum";
@@ -77,6 +77,24 @@ export default function ProgrammeCurriculumRoutes() {
             <Layout>
               <BreadcrumbTabsAcadadmin />
               <AdminViewACourse />
+            </Layout>
+          }
+        />
+        <Route
+          path="/admin_course_instructor"
+          element={
+            <Layout>
+              <BreadcrumbTabsAcadadmin />
+              <AcadAdminCourseInstructor />
+            </Layout>
+          }
+        />
+        <Route
+          path="/admin_course_instructor_form"
+          element={
+            <Layout>
+              <BreadcrumbTabsAcadadmin />
+              <AcadAdminCourseInstructorForm />
             </Layout>
           }
         />
