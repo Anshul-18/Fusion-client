@@ -115,21 +115,9 @@ function Discipline() {
     >
       {" "}
       {/* Full width and no left margin */}
-      <nav className="breadcrumbs">
-        <span>Program and Curriculum</span>
-        <span>Curriculums</span>
-        <span>CSE UG Curriculum</span>
-      </nav>
       {/* Options Section */}
-      <div className="program-options">
-        <p>Programmes</p>
-        <p>Curriculums</p>
-        <p>Courses</p>
-        <p className="active">disciplines</p>
-        <p>batches</p>
-      </div>
       <h2 style={{ fontSize: "24px", textAlign: "left", marginBottom: "20px" }}>
-        {" "}
+        {/* {" "} */}
         {/* Aligned to left */}
         Discipline
       </h2>

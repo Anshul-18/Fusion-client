@@ -159,18 +159,18 @@ function Batches() {
 
   return (
     <div>
-      <nav className="breadcrumbs">
+      {/* <nav className="breadcrumbs">
         <span>Program and Curriculum</span>
         <span>Curriculums</span>
         <span>CSE UG Curriculum</span>
-      </nav>
+      </nav> */}
 
       <div className="program-options">
-        <p>Programmes</p>
+        {/* <p>Programmes</p>
         <p className="active">Curriculums</p>
         <p>Courses</p>
         <p>disciplines</p>
-        <p>batches</p>
+        <p>batches</p> */}
 
         <div className="top-actions">
           {/* <Button variant="filled" color="blue">Add Batch</Button> */}

@@ -5,6 +5,7 @@ import {
   Container,
   Flex,
   Button,
+  ScrollArea,
 } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
 // import './Admin_view_all_courses.css';
@@ -93,6 +94,7 @@ const disciplineData = [
 
 function DisciplineStud() {
   const navigate = useNavigate(); // Hook to navigate between routes
+  console.log(navigate);
 
   return (
     <Container
@@ -105,6 +107,14 @@ function DisciplineStud() {
         width: "100vw",
       }}
     >
+      {/* <style>{`
+        .courses-scroll-area {
+          flex-grow: 1;
+          height: 100vh
+          overflow-y: auto;
+        }
+      `}</style> */}
+
       {/* <nav className="breadcrumbs">
         <span>Program and Curriculum</span>
         <span>Curriculums</span>
@@ -128,84 +138,105 @@ function DisciplineStud() {
       >
         {/* Discipline Heading */}
         <Button variant="filled" style={{ marginTop: "20px" }}>
-        Discipline
-      </Button>
+          Discipline
+        </Button>
 
         {/* Add Discipline Button */}
-       
       </Flex>
 
       {/* Scrollable and Larger Table */}
-      <Flex  style={{width:'85vw' , display:'flex'}}>
-        <Table
-          highlightOnHover
-          verticalSpacing="sm"
-          style={{
-            width: "65vw", // Make the table larger by using full width
-            border: "2px solid #1e90ff", // Added blue border
-            borderRadius: "8px", // Optional: rounded corners for the table
-          }}
-        >
-          <thead>
-            <tr style={{ backgroundColor: "#15ABFF54" }}>
-              <th style={{ padding: "10px", textAlign: "left" }}>Discipline</th>
-              <th style={{ padding: "10px", textAlign: "left" }}>Programmes</th>
-           
-              {/* Added for Edit Button */}
-            </tr>
-          </thead>
-          <tbody>
-            {disciplineData.map((item, index) => (
-              <tr
-                key={item.discipline}
-                style={{
-                  backgroundColor: index % 2 === 0 ? "#fff" : "#15ABFF1C",
-                  transition: "background-color 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#15ABFF1C";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor =
-                    index % 2 === 0 ? "#fff" : "#15ABFF1C";
-                }}
-              >
-                <td style={{ padding: "10px" ,borderRight:'1px solid black'}}>{item.discipline}</td>
-                <td
+      <ScrollArea
+        // className="courses-scroll-area"
+        type="hover"
+        style={{
+          // height: "100%",
+          width: "90vw",
+          backgroundColor: "white",
+          padding: "20px",
+          boxShadow: "0px 0px 1px 1px rgba(0, 0, 0, 0.2)",
+          borderRadius: "5px",
+          // margin: "20px 0 0 0",
+          marginTop: "22px",
+        }}
+        mr={25}
+      >
+        <Flex style={{ width: "90vw", display: "flex" }}>
+          <Table
+            highlightOnHover
+            verticalSpacing="sm"
+            style={{
+              width: "87vw", // Make the table larger by using full width
+              border: "2px solid #1e90ff", // Added blue border
+              borderRadius: "8px", // Optional: rounded corners for the table
+            }}
+          >
+            <thead>
+              <tr style={{ backgroundColor: "#15ABFF54" }}>
+                <th style={{ padding: "10px", textAlign: "left" }}>
+                  Discipline
+                </th>
+                <th style={{ padding: "10px", textAlign: "left" }}>
+                  Programmes
+                </th>
+
+                {/* Added for Edit Button */}
+              </tr>
+            </thead>
+            <tbody>
+              {disciplineData.map((item, index) => (
+                <tr
+                  key={item.discipline}
                   style={{
-                    padding: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    // borderRight:'1px solid black'
+                    backgroundColor: index % 2 === 0 ? "#fff" : "#15ABFF1C",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#15ABFF1C";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      index % 2 === 0 ? "#fff" : "#15ABFF1C";
                   }}
                 >
-                  {item.programs.map((program, i, array) => (
-                    <React.Fragment key={i}>
-                      <Anchor
-                        component={Link}
-                        to={`/programme_curriculum/curriculums?semester=${
-                          program.label
-                        }`} 
-                        style={{
-                          marginRight: "10px",
-                          color: "#1e90ff",
-                        }}
-                      >
-                        {program.label}
-                      </Anchor>
-                      {i < array.length - 1 && (
-                        <span style={{ margin: "0 10px" }}>|</span>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </td>
-               
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-       
-      </Flex>
+                  <td
+                    style={{ padding: "10px", borderRight: "1px solid black" }}
+                  >
+                    {item.discipline}
+                  </td>
+                  <td
+                    style={{
+                      padding: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      // borderRight:'1px solid black'
+                    }}
+                  >
+                    {item.programs.map((program, i, array) => (
+                      <React.Fragment key={i}>
+                        <Anchor
+                          component={Link}
+                          to={`/programme_curriculum/curriculums?semester=${
+                            program.label
+                          }`}
+                          style={{
+                            marginRight: "10px",
+                            color: "#1e90ff",
+                          }}
+                        >
+                          {program.label}
+                        </Anchor>
+                        {i < array.length - 1 && (
+                          <span style={{ margin: "0 10px" }}>|</span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Flex>
+      </ScrollArea>
     </Container>
   );
 }

@@ -165,26 +165,13 @@ function Batches() {
         <span>CSE UG Curriculum</span>
       </nav> */}
 
-      <div className="program-options">
-        {/* <p>Programmes</p>
+      {/* <div className="program-options">
+        </div> */}
+      {/* <p>Programmes</p>
         <p className="active">Curriculums</p>
         <p>Courses</p>
         <p>disciplines</p>
         <p>batches</p> */}
-
-        <div className="top-actions">
-          {/* <Button variant="filled" color="blue">Add Batch</Button> */}
-
-          {/* Toggle search icon and close icon based on search visibility */}
-          {!isSearchVisible ? (
-            <MagnifyingGlass
-              size={24}
-              onClick={() => setIsSearchVisible(true)}
-              style={{ cursor: "pointer", color: "#007bff" }}
-            />
-          ) : null}
-        </div>
-      </div>
 
       <div className="courses-container">
         <div
@@ -203,17 +190,43 @@ function Batches() {
             >
               Finished Batches
             </Button>
+
+            <div className="top-actions">
+              {/* <Button variant="filled" color="blue">Add Batch</Button> */}
+
+              {/* Toggle search icon and close icon based on search visibility */}
+              {!isSearchVisible ? (
+                <MagnifyingGlass
+                  size={24}
+                  onClick={() => setIsSearchVisible(true)}
+                  style={{ cursor: "pointer", color: "#007bff" }}
+                />
+              ) : null}
+            </div>
           </div>
 
           <ScrollArea
             className="courses-scroll-area"
             type="hover"
-            style={{ height: "300px" }}
+            style={{
+              height: "100vh",
+              backgroundColor: "white",
+              padding: "0px 20px",
+              boxShadow: "0px 0px 1px 1px rgba(0, 0, 0, 0.2)",
+              borderRadius: "5px",
+              margin: "12px 15px 0px 20px",
+            }}
           >
             {activeTab === "Batches" && (
               <div className="batches-table">
-                <table className="courses-table">
-                  <thead className="courses-table-header">
+                <table
+                  className="courses-table"
+                  style={{ border: "2px solid #1e90ff" }}
+                >
+                  <thead
+                    className="courses-table-header"
+                    style={{ backgroundColor: "#b0e0ff" }}
+                  >
                     <tr>
                       <th>Name</th>
                       <th>Discipline</th>
@@ -229,7 +242,11 @@ function Batches() {
                         <td>{batch.discipline}</td>
                         <td>{batch.year}</td>
                         <td>
-                          <a href={`/programme_curriculum/stud_curriculum_view?semester=${ batch.curriculum}`} style={{textDecoration:"none"}} className="course-link">
+                          <a
+                            href={`/programme_curriculum/stud_curriculum_view?semester=${batch.curriculum}`}
+                            style={{ textDecoration: "none" }}
+                            className="course-link"
+                          >
                             {batch.curriculum}
                           </a>
                         </td>
@@ -246,13 +263,15 @@ function Batches() {
             {activeTab === "Finished Batches" && (
               <div className="batches-table">
                 <table className="courses-table">
-                  <thead className="courses-table-header">
+                  <thead
+                    className="courses-table-header"
+                    style={{ backgroundColor: "#b0e0ff" }}
+                  >
                     <tr>
                       <th>Name</th>
                       <th>Discipline</th>
                       <th>Year</th>
                       <th>Curriculum</th>
-                     
                     </tr>
                   </thead>
                   <tbody>
@@ -262,11 +281,14 @@ function Batches() {
                         <td>{batch.discipline}</td>
                         <td>{batch.year}</td>
                         <td>
-                          <a href={`/programme_curriculum/stud_curriculum_view?batch=${ batch.curriculum}`} className="course-link" style={{textDecoration:"none"}}>
+                          <a
+                            href={`/programme_curriculum/stud_curriculum_view?batch=${batch.curriculum}`}
+                            className="course-link"
+                            style={{ textDecoration: "none" }}
+                          >
                             {batch.curriculum}
                           </a>
                         </td>
-                      
                       </tr>
                     ))}
                   </tbody>
@@ -397,15 +419,17 @@ function Batches() {
         .tabs {
           display: flex;
           gap: 20px;
-          margin-top: 10px;
+          padding:0px 20px;
+          padding-top:20px;
+          // margin-top: 10px;
         }
 
         .courses-scroll-area {
-          margin-top: 20px;
+          // margin-top: 20px;
         }
 
         .batches-table {
-          margin-top: 20px;
+          padding-top: 20px;
         }
 
         .courses-table {

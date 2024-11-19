@@ -184,7 +184,7 @@ function View_all_working_curriculums() {
         <a
           href={`/programme_curriculum/stud_curriculum_view?curriculum=${
             element.name
-          }`} 
+          }`}
           style={{ color: "#3498db", textDecoration: "underline" }}
         >
           {element.name}
@@ -198,7 +198,6 @@ function View_all_working_curriculums() {
         }}
       >
         {element.version}
-        
       </td>
       <td
         style={{
@@ -231,7 +230,7 @@ function View_all_working_curriculums() {
         style={{ padding: "20px", minHeight: "100vh", maxWidth: "100%" }}
       >
         {/* Breadcrumb Section */}
-       
+
         {/* Title Section */}
         <Flex justify="flex-start" align="center" mb={20}>
           {/* <Text
@@ -245,10 +244,7 @@ function View_all_working_curriculums() {
           >
             Curriculums
           </Text> */}
-          <Button
-            variant= "filled" 
-            style={{ marginRight: "10px" }}
-          >
+          <Button variant="filled" style={{ marginRight: "10px" }}>
             Curriculums
           </Button>
         </Flex>
@@ -260,15 +256,19 @@ function View_all_working_curriculums() {
               style={{
                 height: "500px",
                 overflowY: "auto",
-                border: "1px solid #d3d3d3",
+                // border: "1px solid #d3d3d3",
                 borderRadius: "10px",
+                border: "2px solid #1e90ff",
               }}
             >
               <Table
+                highlightOnHover
+                verticalSpacing="sm"
                 style={{
                   backgroundColor: "white",
                   padding: "20px",
                   flexGrow: 1,
+                  borderRadius: "10px",
                 }}
               >
                 <thead>

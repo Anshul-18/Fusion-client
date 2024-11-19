@@ -138,7 +138,10 @@ function Admin_view_a_courses() {
 
       {/* Options Section */}
       <div className="program-options">
-        
+        {/* <h4>Courses</h4> */}
+        <Button variant="filled" style={{ margin: "10px" }}>
+          Courses
+        </Button>
 
         <div className="top-actions">
           {/* <Button className="add-course-btn">ADD COURSE</Button> */}
@@ -155,11 +158,6 @@ function Admin_view_a_courses() {
         </div>
       </div>
 
-      {/* <h4>Courses</h4> */}
-      <Button variant="filled" style={{ margin: "10px" }}>
-        Courses
-      </Button>
-
       <div className={`courses-container ${showSearch ? "search-active" : ""}`}>
         <div className="courses-table-section">
           <ScrollArea className="courses-scroll-area">
@@ -170,7 +168,12 @@ function Admin_view_a_courses() {
               withBorder
               className="courses-card-container"
             >
-              <Table highlightOnHover striped className="courses-table">
+              <Table
+                highlightOnHover
+                striped
+                className="courses-table"
+                style={{ border: "2px solid #1e90ff" }}
+              >
                 <thead className="courses-table-header">
                   <tr>
                     <th>Course Code</th>
@@ -185,8 +188,8 @@ function Admin_view_a_courses() {
                     <tr key={index} className="courses-table-row">
                       <td>
                         <a
-                          href={`/programme_curriculum/student_course?course=${ course.code}`}
-                          style={{textDecoration:'none'}}
+                          href={`/programme_curriculum/student_course?course=${course.code}`}
+                          style={{ textDecoration: "none" }}
                           className="course-link"
                         >
                           {course.code}
@@ -290,6 +293,7 @@ function Admin_view_a_courses() {
           width: 100%;
           height: 100vh;
           transition: all 0.3s ease-in-out;
+          padding: 0 15px;
         }
 
         .courses-container.search-active  {
@@ -432,7 +436,7 @@ function Admin_view_a_courses() {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 10px 0;
+    padding: 10px 10px;
     font-size: 0.8vw;
     border-bottom: 1px solid #e0e0e0;
   }

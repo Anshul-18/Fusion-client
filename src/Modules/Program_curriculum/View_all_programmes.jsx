@@ -4,8 +4,8 @@ import {
   Table,
   Flex,
   Container,
-  Text,
   Button,
+  ScrollArea,
 } from "@mantine/core";
 
 // Sample data for all programmes and disciplines
@@ -61,13 +61,13 @@ function renderTable(data) {
         }}
       >
         <a
-            href={`/programme_curriculum/curriculums?programme=${encodeURIComponent(
-              element.programme,
-            )}`}
-            style={{ color: "#3498db", textDecoration: "none" }}
-          >
-            {element.programme}
-          </a>
+          href={`/programme_curriculum/curriculums?programme=${encodeURIComponent(
+            element.programme,
+          )}`}
+          style={{ color: "#3498db", textDecoration: "none" }}
+        >
+          {element.programme}
+        </a>
       </td>
       <td
         style={{
@@ -95,8 +95,6 @@ function View_all_programmes() {
       <Container
         style={{ padding: "20px", minHeight: "100vh", maxWidth: "100%" }}
       >
-       
-
         {/* Buttons for Section Selection */}
         <Flex mb={20}>
           <Button
@@ -122,122 +120,146 @@ function View_all_programmes() {
         </Flex>
 
         {/* Table Section */}
-        <Flex justify="space-between" align="flex-start" mb={20}>
-          <div style={{ flexGrow: 1 }}>
-            {/* Conditional Rendering of Tables based on Active Section */}
-            {activeSection === "ug" && (
-              <Table
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                  border: "1px solid #d3d3d3",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        textAlign: "center",
-                        width: "33%",
-                      }}
-                    >
-                      Programme
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        textAlign: "center",
-                        width: "67%",
-                      }}
-                    >
-                      Discipline
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{renderTable(ugData)}</tbody>
-              </Table>
-            )}
-            {activeSection === "pg" && (
-              <Table
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                  border: "1px solid #d3d3d3",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        textAlign: "center",
-                        width: "33%",
-                      }}
-                    >
-                      Programme
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        textAlign: "center",
-                        width: "67%",
-                      }}
-                    >
-                      Discipline
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{renderTable(pgData)}</tbody>
-              </Table>
-            )}
-            {activeSection === "phd" && (
-              <Table
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                  border: "1px solid #d3d3d3",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        textAlign: "center",
-                        width: "33%",
-                      }}
-                    >
-                      Programme
-                    </th>
-                    <th
-                      style={{
-                        padding: "12px 20px",
-                        backgroundColor: "#C5E2F6",
-                        color: "#3498db",
-                        textAlign: "center",
-                        width: "67%",
-                      }}
-                    >
-                      Discipline
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{renderTable(phdData)}</tbody>
-              </Table>
-            )}
-          </div>
-        </Flex>
+        <ScrollArea
+          className="courses-scroll-area"
+          type="hover"
+          style={{
+            height: "100%",
+            width: "90vw",
+            backgroundColor: "white",
+            padding: "20px",
+            boxShadow: "0px 0px 1px 1px rgba(0, 0, 0, 0.2)",
+            borderRadius: "5px",
+            // margin: "20px 0 0 0",
+          }}
+          mr={25}
+        >
+          <Flex justify="space-between" align="flex-start" mb={20}>
+            <div style={{ flexGrow: 1 }}>
+              {/* Conditional Rendering of Tables based on Active Section */}
+              {activeSection === "ug" && (
+                <Table
+                  highlightOnHover
+                  verticalSpacing="sm"
+                  style={{
+                    width: "87vw", // Make the table larger by using full width
+                    border: "2px solid #1e90ff", // Added blue border
+                    borderRadius: "8px", // Optional: rounded corners for the table
+                  }}
+                  // style={{
+                  //   backgroundColor: "white",
+                  //   borderRadius: "10px",
+                  //   border: "1px solid #d3d3d3",
+
+                  // }}
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          textAlign: "center",
+                          width: "33%",
+                        }}
+                      >
+                        Programme
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          textAlign: "center",
+                          width: "67%",
+                        }}
+                      >
+                        Discipline
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>{renderTable(ugData)}</tbody>
+                </Table>
+              )}
+              {activeSection === "pg" && (
+                <Table
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "10px",
+                    // border: "1px solid #d3d3d3",
+                    border: "2px solid #1e90ff",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          textAlign: "center",
+                          width: "33%",
+                        }}
+                      >
+                        Programme
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          textAlign: "center",
+                          width: "67%",
+                        }}
+                      >
+                        Discipline
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>{renderTable(pgData)}</tbody>
+                </Table>
+              )}
+              {activeSection === "phd" && (
+                <Table
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "10px",
+                    border: "2px solid #1e90ff",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          textAlign: "center",
+                          width: "33%",
+                        }}
+                      >
+                        Programme
+                      </th>
+                      <th
+                        style={{
+                          padding: "12px 20px",
+                          backgroundColor: "#C5E2F6",
+                          color: "#3498db",
+                          textAlign: "center",
+                          width: "67%",
+                        }}
+                      >
+                        Discipline
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>{renderTable(phdData)}</tbody>
+                </Table>
+              )}
+            </div>
+          </Flex>
+        </ScrollArea>
       </Container>
     </MantineProvider>
   );
