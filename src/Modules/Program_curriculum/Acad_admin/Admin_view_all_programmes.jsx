@@ -6,7 +6,6 @@ import {
   Container,
   Button,
   Text,
-  Box,
   ScrollArea,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
@@ -39,8 +38,8 @@ function AdminViewProgrammes() {
         setPgData(response.data.pg_programmes);
         setPhdData(response.data.phd_programmes);
         setLoading(false);
-      } catch (fetchErr) {
-        console.error("Error fetching data: ", fetchErr);
+      } catch (fetchError) {
+        console.error("Error fetching data: ", fetchError);
         setError("Failed to load data");
         setLoading(false);
       }
@@ -129,42 +128,27 @@ function AdminViewProgrammes() {
       <Container
         style={{ padding: "20px", minHeight: "100vh", maxWidth: "100%" }}
       >
-        <Flex mb={20} style={{ justifyContent: "space-between" }}>
-          <Box>
-            <Button
-              variant={activeSection === "ug" ? "filled" : "outline"}
-              onClick={() => setActiveSection("ug")}
-              style={{ marginRight: "10px" }}
-            >
-              UG: Undergraduate
-            </Button>
-            <Button
-              variant={activeSection === "pg" ? "filled" : "outline"}
-              onClick={() => setActiveSection("pg")}
-              style={{ marginRight: "10px" }}
-            >
-              PG: Post Graduate
-            </Button>
-            <Button
-              variant={activeSection === "phd" ? "filled" : "outline"}
-              onClick={() => setActiveSection("phd")}
-            >
-              PhD: Doctor of Philosophy
-            </Button>
-          </Box>
-
-          <Box>
-            <Link to="/programme_curriculum/acad_admin_add_programme_form">
-              <Button
-                variant="filled"
-                color="blue"
-                radius="md"
-                style={{ marginLeft: "20px", height: "45px" }}
-              >
-                ADD PROGRAMME
-              </Button>
-            </Link>
-          </Box>
+        <Flex mb={20}>
+          <Button
+            variant={activeSection === "ug" ? "filled" : "outline"}
+            onClick={() => setActiveSection("ug")}
+            style={{ marginRight: "10px" }}
+          >
+            UG: Undergraduate
+          </Button>
+          <Button
+            variant={activeSection === "pg" ? "filled" : "outline"}
+            onClick={() => setActiveSection("pg")}
+            style={{ marginRight: "10px" }}
+          >
+            PG: Post Graduate
+          </Button>
+          <Button
+            variant={activeSection === "phd" ? "filled" : "outline"}
+            onClick={() => setActiveSection("phd")}
+          >
+            PhD: Doctor of Philosophy
+          </Button>
         </Flex>
 
         {/* Table Section */}

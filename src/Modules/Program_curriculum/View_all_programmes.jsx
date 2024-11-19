@@ -1,90 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MantineProvider,
   Table,
   Flex,
   Container,
   Button,
+  Text,
   ScrollArea,
 } from "@mantine/core";
+import { fetchAllProgrammes } from "./api/api";
 
-// Sample data for all programmes and disciplines
-const ugData = [
-  { programme: "B.Tech ME", discipline: "Mechanical Engineering" },
-  { programme: "B.Design", discipline: "Design" },
-  { programme: "B.Tech CSE", discipline: "Computer Science and Engineering" },
-  {
-    programme: "B.Tech ECE",
-    discipline: "Electronics and Communication Engineering",
-  },
-  { programme: "B.Tech SM", discipline: "Smart Manufacturing" },
-];
-
-const pgData = [
-  { programme: "M.Tech CSE", discipline: "Computer Science and Engineering" },
-  {
-    programme: "M.Tech ECE",
-    discipline: "Electronics and Communication Engineering",
-  },
-  { programme: "M.Tech ME", discipline: "Mechanical Engineering" },
-  { programme: "M.Tech Mechatronics", discipline: "Mechatronics" },
-  { programme: "M.Des Design", discipline: "Design" },
-  { programme: "M.Tech SM", discipline: "Smart Manufacturing" },
-];
-
-const phdData = [
-  { programme: "PhD in CSE", discipline: "Computer Science and Engineering" },
-  {
-    programme: "PhD in ECE",
-    discipline: "Electronics and Communication Engineering",
-  },
-  { programme: "PhD in ME", discipline: "Mechanical Engineering" },
-  { programme: "PhD in Physics", discipline: "Natural Sciences-Physics" },
-  { programme: "PhD in Maths", discipline: "Natural Sciences-Mathematics" },
-  { programme: "PhD in English", discipline: "Humanities - English" },
-  { programme: "PhD in Design", discipline: "Design" },
-];
-
-function renderTable(data) {
-  return data.map((element, index) => (
-    <tr
-      key={element.programme}
-      style={{ backgroundColor: index % 2 === 0 ? "#E6F7FF" : "#ffffff" }}
-    >
-      <td
-        style={{
-          padding: "15px 20px",
-          textAlign: "center",
-          color: "#3498db",
-          width: "33%",
-          borderRight: "1px solid #d3d3d3",
-        }}
-      >
-        <a
-          href={`/programme_curriculum/curriculums?programme=${encodeURIComponent(
-            element.programme,
-          )}`}
-          style={{ color: "#3498db", textDecoration: "none" }}
-        >
-          {element.programme}
-        </a>
-      </td>
-      <td
-        style={{
-          padding: "15px 20px",
-          textAlign: "left",
-          width: "67%",
-          borderRight: "1px solid #d3d3d3",
-        }}
-      >
-        {element.discipline}
-      </td>
-    </tr>
-  ));
-}
-
-function View_all_programmes() {
+function ViewAllProgrammes() {
   const [activeSection, setActiveSection] = useState("ug"); // Default to UG
+  const [ugData, setUgData] = useState([]); // State to store UG programs
+  const [pgData, setPgData] = useState([]); // State to store PG programs
+  const [phdData, setPhdData] = useState([]); // State to store PhD programs
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Call the API without token for now
+        const data = await fetchAllProgrammes();
+        setUgData(data.ug_programmes);
+        setPgData(data.pg_programmes);
+        setPhdData(data.phd_programmes);
+      } catch (fetchError) {
+        console.error("Error fetching data:", fetchError);
+        setError("Failed to load data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const renderTable = (data) => {
+    return data.map((element, index) => (
+      <tr
+        key={element.programme}
+        style={{ backgroundColor: index % 2 === 0 ? "#E6F7FF" : "#ffffff" }}
+      >
+        <td
+          style={{
+            padding: "15px 20px",
+            textAlign: "center",
+            color: "#3498db",
+            width: "33%",
+            borderRight: "1px solid #d3d3d3",
+          }}
+        >
+          <a
+            href={`/programme_curriculum/curriculums/${element.id}`}
+            style={{ color: "#3498db", textDecoration: "none" }}
+          >
+            {element.name}
+          </a>
+        </td>
+        <td
+          style={{
+            padding: "15px 20px",
+            textAlign: "left",
+            width: "67%",
+            borderRight: "1px solid #d3d3d3",
+          }}
+        >
+          {element.discipline__name}
+        </td>
+      </tr>
+    ));
+  };
+
+  if (loading) {
+    return (
+      <Container>
+        <Text>Loading programmes...</Text>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container>
+        <Text color="red">{error}</Text>
+      </Container>
+    );
+  }
 
   return (
     <MantineProvider
@@ -265,4 +268,4 @@ function View_all_programmes() {
   );
 }
 
-export default View_all_programmes;
+export default ViewAllProgrammes;

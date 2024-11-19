@@ -15,9 +15,9 @@ import ViewACourse from "./View_a_course";
 import ViewAllWorkingCurriculums from "./View_all_working_curriculums";
 import ViewAllProgrammes from "./View_all_programmes";
 import BDesAcadView from "./Acad_admin/BDesAcadView";
-import BDesstudView from "./BDesStudView";
+import BDesstudView from "./Student/BDesStudView";
 import DisciplineAcad from "./Acad_admin/DisciplineAcad";
-import DisciplineStud from "./DisciplineStud";
+import DisciplineStud from "./Student/DisciplineStud";
 import FacultyCourseProposal from "./Faculty/Faculty_course_proposal";
 import VCourseProposalForm from "./Faculty/VCourseProposalForm";
 import CourseSlotDetails from "./CourseSlotDetails";
@@ -31,8 +31,8 @@ import OutwardFile from "./Faculty/OutwardFiles";
 import BDesView from "./Faculty/BDesView";
 import Discipline from "./Faculty/Discipline";
 
-import StudCourseSlotDetails from "./StudCourseSlotDetails";
-import StudSemesterInfo from "./StudSemesterinfo";
+import StudCourseSlotDetails from "./Student/StudCourseSlotDetails";
+import StudSemesterInfo from "./Student/StudSemesterinfo";
 // forms
 import AdminAddBatchForm from "./Acad_admin/Admin_add_batch_form";
 import AdminAddCourseProposalForm from "./Acad_admin/Admin_add_course_proposal_form";
@@ -50,7 +50,7 @@ import AcadAdminCourseInstructor from "./Acad_admin/Acad_admin_course_instructor
 // breadcrumb
 // import BreadCrumbs from "./BreadCrumbsPorgrammeCurriculum";
 import BreadcrumbTabsAcadadmin from "./Acad_admin/BreadcrumbTabsAcadadmin";
-import BreadcrumbTabs from "./BreadcrumbTabsStudent";
+import BreadcrumbTabs from "./Student/BreadcrumbTabsStudent";
 // import { Breadcrumbs } from "@mantine/core";
 export default function ProgrammeCurriculumRoutes() {
   return (
@@ -217,7 +217,7 @@ export default function ProgrammeCurriculumRoutes() {
           }
         />
         <Route
-          path="/curriculums"
+          path="/curriculums/:id"
           element={
             <Layout>
               <BreadcrumbTabs />
@@ -278,7 +278,7 @@ export default function ProgrammeCurriculumRoutes() {
           }
         />
         <Route
-          path="/student_course"
+          path="/student_course/:id"
           element={
             <Layout>
               <BreadcrumbTabs />
@@ -305,7 +305,7 @@ export default function ProgrammeCurriculumRoutes() {
           }
         />
         <Route
-          path="/stud_semester_info"
+          path="/stud_semester_info/:id"
           element={
             <Layout>
               <BreadcrumbTabs />
@@ -314,7 +314,7 @@ export default function ProgrammeCurriculumRoutes() {
           }
         />
         <Route
-          path="/stud_course_slot_details"
+          path="/stud_course_slot_details/:id"
           element={
             <Layout>
               <BreadcrumbTabs />
@@ -323,7 +323,7 @@ export default function ProgrammeCurriculumRoutes() {
           }
         />
         <Route
-          path="/stud_curriculum_view"
+          path="/stud_curriculum_view/:id"
           element={
             <Layout>
               <BreadcrumbTabs />

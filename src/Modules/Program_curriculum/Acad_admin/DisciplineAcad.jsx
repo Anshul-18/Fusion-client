@@ -88,6 +88,109 @@ function DisciplineAcad() {
         <Button variant="filled" style={{ marginRight: "10px" }}>
           Disciplines
         </Button>
+      </Flex>
+
+      {/* Scrollable and Larger Table */}
+      <Flex style={{ width: "85vw", display: "flex" }}>
+        <Table
+          highlightOnHover
+          verticalSpacing="sm"
+          style={{
+            width: "65vw", // Make the table larger by using full width
+            border: "2px solid #1e90ff", // Added blue border
+            borderRadius: "8px", // Optional: rounded corners for the table
+          }}
+        >
+          <thead>
+            <tr style={{ backgroundColor: "#15ABFF54" }}>
+              <th style={{ padding: "10px", textAlign: "left" }}>Discipline</th>
+              <th style={{ padding: "10px", textAlign: "left" }}>Programmes</th>
+              <th style={{ padding: "10px", textAlign: "center" }}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan="3" style={{ textAlign: "center" }}>
+                  Loading...
+                </td>
+              </tr>
+            ) : disciplines.length > 0 ? (
+              disciplines.map((item, index) => (
+                <tr
+                  key={item.name}
+                  style={{
+                    backgroundColor: index % 2 === 0 ? "#fff" : "#15ABFF1C",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#15ABFF1C";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      index % 2 === 0 ? "#fff" : "#15ABFF1C";
+                  }}
+                >
+                  <td
+                    style={{ padding: "10px", borderRight: "1px solid black" }}
+                  >
+                    {item.name} ({item.acronym})
+                  </td>
+                  <td
+                    style={{
+                      padding: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      borderRight: "1px solid black",
+                    }}
+                  >
+                    {item.programmes.map((program, i, array) => (
+                      <React.Fragment key={i}>
+                        <Anchor
+                          component={Link}
+                          to={`/programme_curriculum/acad_view?programme=${program.id}`}
+                          style={{
+                            marginRight: "10px",
+                            color: "#1e90ff",
+                            textDecoration: "underline",
+                          }}
+                        >
+                          {program.name}
+                        </Anchor>
+                        {i < array.length - 1 && (
+                          <span style={{ margin: "0 10px" }}>|</span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </td>
+
+                  {/* Edit Button */}
+                  <td style={{ padding: "10px", textAlign: "center" }}>
+                    <a
+                      href={`/programme_curriculum/acad_admin_edit_discipline_form?discipline=${item.name}`}
+                    >
+                      <Button
+                        style={{
+                          backgroundColor: "#28a745",
+                          color: "white",
+                          padding: "5px 10px",
+                        }}
+                      >
+                        EDIT
+                      </Button>
+                    </a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" style={{ textAlign: "center" }}>
+                  No disciplines found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
 
         <Button
           style={{

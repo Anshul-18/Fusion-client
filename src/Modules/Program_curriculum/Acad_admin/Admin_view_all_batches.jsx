@@ -114,7 +114,6 @@ function AdminViewAllBatches() {
               borderRadius: "5px",
               margin: "20px 0 0 0",
             }}
-            mr={25}
           >
             {activeTab === "Batches" && (
               <div className="batches-table">
@@ -132,8 +131,9 @@ function AdminViewAllBatches() {
                     </tr>
                   </thead>
                   <tbody>
-                    {Array.isArray(batches) && batches.length > 0 ? (
-                      batches.map((batch, index) => (
+                    {Array.isArray(filteredBatches) &&
+                    filteredBatches.length > 0 ? (
+                      filteredBatches.map((batch, index) => (
                         <tr
                           key={index}
                           className="courses-table-row"
@@ -165,6 +165,7 @@ function AdminViewAllBatches() {
                                 Edit
                               </Button>
                             </a>
+                            /
                           </td>
                         </tr>
                       ))

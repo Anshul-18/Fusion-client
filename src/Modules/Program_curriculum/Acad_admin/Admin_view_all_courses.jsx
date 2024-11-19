@@ -25,7 +25,6 @@ function Admin_view_all_courses() {
         setCourses(response.data.courses);
         setLoading(false);
       } catch (fetchError) {
-        // Renamed error to fetchError
         console.error("Error fetching batch data:", fetchError);
         setError(fetchError.message); // Store error message
         setLoading(false);
