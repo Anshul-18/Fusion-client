@@ -55,9 +55,11 @@ function CourseInstructorPage() {
   // if (error) {
   //   return <div>Error: {error}</div>; // Show error message if there's an issue
   // }
-  const [courseInstructor, setCourseInstructor] = useState([]);
+  // const [courseInstructor, setCourseInstructor] = useState([]);
+  const [courseInstructor, setCourseInstructor] = useState(courseData);
+
   // NOTE: WRITTEN TEMPORARILY
-  setCourseInstructor([]);
+  // setCourseInstructor([]);
   const handleSearch = () => {
     const filtered = courseInstructor.filter((batch) => {
       return (
@@ -69,6 +71,7 @@ function CourseInstructorPage() {
       );
     });
     setFilter(filtered);
+    setCourseInstructor(filtered);
   };
 
   const handleInputChange = (e) => {
