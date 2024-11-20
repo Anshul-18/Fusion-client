@@ -107,12 +107,12 @@ function AdminViewAllBatches() {
             className="courses-scroll-area"
             type="hover"
             style={{
-              height: "100vh",
+              // height: "100vh",
               backgroundColor: "white",
-              padding: "0px 20px",
+              // padding: "0px 20px",
               boxShadow: "0px 0px 1px 1px rgba(0, 0, 0, 0.2)",
-              borderRadius: "5px",
-              margin: "20px 0 0 0",
+              // borderRadius: "5px",
+              margin: "20px 20px 0 0",
             }}
           >
             {activeTab === "Batches" && (
@@ -362,11 +362,11 @@ function AdminViewAllBatches() {
         }
 
         .courses-scroll-area {
-          height:150vh;
+          // height:150vh;
         }
 
         .batches-table {
-          margin-top: 20px;
+          // margin-top: 20px;
         }
 
         .courses-table {

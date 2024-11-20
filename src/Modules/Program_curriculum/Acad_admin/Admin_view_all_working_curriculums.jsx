@@ -152,7 +152,7 @@ function Admin_view_all_working_curriculums() {
                   height: "500px",
                   overflowY: "auto",
                   border: "2px solid rgb(30, 144, 255)",
-                  borderRadius: "10px",
+                  // borderRadius: "10px",
                 }}
               >
                 <Table

@@ -160,9 +160,9 @@ function AdminViewProgrammes() {
             height: "100%",
             width: "90vw",
             backgroundColor: "white",
-            padding: "20px",
+            // padding: "20px",
             boxShadow: "0px 0px 1px 1px rgba(0, 0, 0, 0.2)",
-            borderRadius: "5px",
+            // borderRadius: "5px",
             // margin: "20px 0 0 0",
           }}
           mr={25}
@@ -175,7 +175,7 @@ function AdminViewProgrammes() {
                   style={{
                     backgroundColor: "white",
                     border: "2px solid rgb(30, 144, 255)",
-                    borderRadius: "10px",
+                    // borderRadius: "10px",
                     // border: "2px solid #d3d3d3",
                   }}
                 >
@@ -223,7 +223,7 @@ function AdminViewProgrammes() {
                 <Table
                   style={{
                     backgroundColor: "white",
-                    borderRadius: "10px",
+                    // borderRadius: "10px",
                     border: "2px solid rgb(30, 144, 255)",
                   }}
                 >

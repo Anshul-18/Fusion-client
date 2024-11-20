@@ -68,50 +68,50 @@ function Admin_view_all_courses() {
           </div>
 
           <ScrollArea className="courses-scroll-area" mr={25}>
-            <Card
+            {/* <Card
               shadow="sm"
-              padding="lg"
-              radius="md"
+              // padding="lg"
+              // radius="md"
               withBorder
               className="courses-card-container"
-            >
-              <Table highlightOnHover striped className="courses-table">
-                <thead className="courses-table-header">
-                  <tr>
-                    <th>Course Code</th>
-                    <th>Course Name</th>
-                    <th>Version</th>
-                    <th>Credits</th>
-                    <th>Edit</th>
+            > */}
+            <Table highlightOnHover striped className="courses-table">
+              <thead className="courses-table-header">
+                <tr>
+                  <th>Course Code</th>
+                  <th>Course Name</th>
+                  <th>Version</th>
+                  <th>Credits</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {courses.map((course, index) => (
+                  <tr key={index} className="courses-table-row">
+                    <td>
+                      <a
+                        href={`/programme_curriculum/admin_course/${course.id}`}
+                        className="course-link"
+                        style={{ textDecoration: "none" }}
+                      >
+                        {course.code}
+                      </a>
+                    </td>
+                    <td>{course.name}</td>
+                    <td>{course.version}</td>
+                    <td>{course.credits}</td>
+                    <td>
+                      <a
+                        href={`/programme_curriculum/acad_admin_edit_course_form/${course.id}`}
+                      >
+                        <Button className="courses-edit-button">Edit</Button>
+                      </a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {courses.map((course, index) => (
-                    <tr key={index} className="courses-table-row">
-                      <td>
-                        <a
-                          href={`/programme_curriculum/admin_course/${course.id}`}
-                          className="course-link"
-                          style={{ textDecoration: "none" }}
-                        >
-                          {course.code}
-                        </a>
-                      </td>
-                      <td>{course.name}</td>
-                      <td>{course.version}</td>
-                      <td>{course.credits}</td>
-                      <td>
-                        <a
-                          href={`/programme_curriculum/acad_admin_edit_course_form/${course.id}`}
-                        >
-                          <Button className="courses-edit-button">Edit</Button>
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Card>
+                ))}
+              </tbody>
+            </Table>
+            {/* </Card> */}
           </ScrollArea>
         </div>
 
