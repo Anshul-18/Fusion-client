@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  // Breadcrumbs,
-  Anchor,
   Select,
   NumberInput,
   Textarea,
@@ -47,17 +45,17 @@ function Admin_add_course_proposal_form() {
     console.log(values);
   };
 
-  const breadcrumbItems = [
-    { title: "Program and Curriculum", href: "#" },
-    { title: "Curriculums", href: "#" },
-    { title: "CSE UG Curriculum", href: "#" },
-  ].map((item, index) => (
-    <Anchor href={item.href} key={index}>
-      {item.title}
-    </Anchor>
-  ));
+  // const breadcrumbItems = [
+  //   { title: "Program and Curriculum", href: "#" },
+  //   { title: "Curriculums", href: "#" },
+  //   { title: "CSE UG Curriculum", href: "#" },
+  // ].map((item, index) => (
+  //   <Anchor href={item.href} key={index}>
+  //     {item.title}
+  //   </Anchor>
+  // ));
   console.log(form);
-  console.log(breadcrumbItems);
+  // console.log(breadcrumbItems);
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}

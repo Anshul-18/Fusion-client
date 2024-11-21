@@ -9,7 +9,7 @@ import {
   ScrollArea,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { fetchAllProgrammes } from "../api/api";
 
 function AdminViewProgrammes() {
   const [activeSection, setActiveSection] = useState("ug"); // Default section
@@ -22,25 +22,20 @@ function AdminViewProgrammes() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Assuming you have stored the token in localStorage or state
-        const token = localStorage.getItem("authToken"); // Replace with actual method to get token
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+          throw new Error("Authorization token not found");
+        }
 
-        const response = await axios.get(
-          "http://127.0.0.1:8000/programme_curriculum/api/admin_programmes/",
-          {
-            headers: {
-              Authorization: `Token ${token}`, // Add the Authorization header
-            },
-          },
-        );
+        const data = await fetchAllProgrammes(token);
 
-        setUgData(response.data.ug_programmes);
-        setPgData(response.data.pg_programmes);
-        setPhdData(response.data.phd_programmes);
-        setLoading(false);
-      } catch (fetchError) {
-        console.error("Error fetching data: ", fetchError);
-        setError("Failed to load data");
+        setUgData(data.ug_programmes || []);
+        setPgData(data.pg_programmes || []);
+        setPhdData(data.phd_programmes || []);
+      } catch (getError) {
+        console.error("Error fetching data: ", error);
+        setError(error);
+      } finally {
         setLoading(false);
       }
     };
