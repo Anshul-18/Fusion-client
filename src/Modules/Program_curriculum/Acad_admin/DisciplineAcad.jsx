@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Table,
-  Anchor,
-  Container,
-  Button,
-  Flex,
-  ScrollArea,
-} from "@mantine/core";
+import { Table, Anchor, Container, Button, Flex } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; // For making API requests
 
@@ -39,36 +32,36 @@ function DisciplineAcad() {
     fetchDisciplines(); // Trigger data fetch
   }, []);
 
-  const headerStyle = {
-    padding: "10px",
-    textAlign: "left",
-    fontWeight: "bold",
-  };
+  // const headerStyle = {
+  //   padding: "10px",
+  //   textAlign: "left",
+  //   fontWeight: "bold",
+  // };
 
-  const cellStyle = {
-    padding: "10px",
-    borderRight: "1px solid black",
-  };
+  // const cellStyle = {
+  //   padding: "10px",
+  //   borderRight: "1px solid black",
+  // };
 
-  const linkStyle = {
-    marginRight: "10px",
-    color: "#1e90ff",
-    textDecoration: "underline",
-  };
+  // const linkStyle = {
+  //   marginRight: "10px",
+  //   color: "#1e90ff",
+  //   textDecoration: "underline",
+  // };
 
-  const dividerStyle = {
-    margin: "0 10px",
-  };
+  // const dividerStyle = {
+  //   margin: "0 10px",
+  // };
 
-  const editButtonStyle = {
-    backgroundColor: "#28a745",
-    color: "white",
-    padding: "5px 10px",
-  };
+  // const editButtonStyle = {
+  //   backgroundColor: "#28a745",
+  //   color: "white",
+  //   padding: "5px 10px",
+  // };
 
-  const centerTextStyle = {
-    textAlign: "center",
-  };
+  // const centerTextStyle = {
+  //   textAlign: "center",
+  // };
 
   return (
     <Container
@@ -88,15 +81,30 @@ function DisciplineAcad() {
         <Button variant="filled" style={{ marginRight: "10px" }}>
           Disciplines
         </Button>
+
+        <Button
+          style={{
+            backgroundColor: "#007bff",
+            color: "white",
+            width: "15vw",
+            marginLeft: "1.5vw",
+            marginRight: "-22vw",
+          }}
+          onClick={() =>
+            navigate("/programme_curriculum/acad_admin_add_discipline_form")
+          }
+        >
+          ADD DISCIPLINE
+        </Button>
       </Flex>
 
       {/* Scrollable and Larger Table */}
-      <Flex style={{ width: "85vw", display: "flex" }}>
+      <Flex style={{ width: "90vw", display: "flex" }}>
         <Table
           highlightOnHover
           verticalSpacing="sm"
           style={{
-            width: "65vw", // Make the table larger by using full width
+            width: "100vw", // Make the table larger by using full width
             border: "2px solid #1e90ff", // Added blue border
             borderRadius: "8px", // Optional: rounded corners for the table
           }}
@@ -191,21 +199,6 @@ function DisciplineAcad() {
             )}
           </tbody>
         </Table>
-
-        <Button
-          style={{
-            backgroundColor: "#007bff",
-            color: "white",
-            width: "15vw",
-            marginLeft: "1.5vw",
-            marginRight: "-22vw",
-          }}
-          onClick={() =>
-            navigate("/programme_curriculum/acad_admin_add_discipline_form")
-          }
-        >
-          ADD DISCIPLINE
-        </Button>
       </Flex>
 
       {/* Scrollable and Larger Table */}
@@ -221,7 +214,7 @@ function DisciplineAcad() {
         }}
       > */}
 
-      <ScrollArea
+      {/* <ScrollArea
         className="courses-scroll-area"
         type="hover"
         style={{
@@ -313,7 +306,7 @@ function DisciplineAcad() {
             </tbody>
           </Table>
         </Flex>
-      </ScrollArea>
+      </ScrollArea> */}
 
       {/* </Card>       */}
     </Container>

@@ -203,7 +203,7 @@ function CourseInstructorPage() {
                         key={index}
                         style={{
                           backgroundColor:
-                            index % 2 === 0 ? "#ffffff" : "#f0f8ff", // Alternating row colors
+                            index % 2 === 0 ? "#ffffff" : "#15abff1c", // Alternating row colors
                         }}
                       >
                         <td

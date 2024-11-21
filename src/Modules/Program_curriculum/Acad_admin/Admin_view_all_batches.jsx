@@ -16,6 +16,7 @@ function AdminViewAllBatches() {
   const [batches, setBatches] = useState([]);
   const [finishedBatches, setFinishedBatches] = useState([]);
   const [filteredBatches, setFilteredBatches] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Fetch data from the backend
   useEffect(() => {
@@ -34,8 +35,10 @@ function AdminViewAllBatches() {
         setBatches(response.data.batches); // Assuming API returns {runningBatches, finishedBatches}
         setFinishedBatches(response.data.finished_batches);
         setFilteredBatches(response.data.filter);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching batch data:", error);
+        setLoading(false);
       }
     };
 
@@ -195,40 +198,55 @@ function AdminViewAllBatches() {
                     </tr>
                   </thead>
                   <tbody>
-                    {finishedBatches.map((batch, index) => (
-                      <tr
-                        key={index}
-                        className="courses-table-row"
-                        style={{
-                          backgroundColor:
-                            index % 2 === 0 ? "#fff" : "#15ABFF1C",
-                        }}
-                      >
-                        <td>{batch.name}</td>
-                        <td>{batch.discipline}</td>
-                        <td>{batch.year}</td>
-                        <td>
-                          <a
-                            href={`/programme_curriculum/view_curriculum?curriculum=${batch.id}`}
-                            className="course-link"
-                            style={{ textDecoration: "none" }}
-                          >
-                            {batch.curriculum} &nbsp;v{batch.curriculumVersion}
-                          </a>
-                        </td>
-                        <td>
-                          <a
-                            href={`/programme_curriculum/admin_edit_batch_form?batch=${batch.name}`}
-                            className="course-link"
-                            style={{ textDecoration: "none" }}
-                          >
-                            <Button variant="filled" color="green">
-                              Edit
-                            </Button>
-                          </a>
+                    {loading ? (
+                      <tr>
+                        <td colSpan="5" style={{ textAlign: "center" }}>
+                          Loading...
                         </td>
                       </tr>
-                    ))}
+                    ) : finishedBatches.length > 0 ? (
+                      finishedBatches.map((batch, index) => (
+                        <tr
+                          key={index}
+                          className="courses-table-row"
+                          style={{
+                            backgroundColor:
+                              index % 2 === 0 ? "#fff" : "#15ABFF1C",
+                          }}
+                        >
+                          <td>{batch.name}</td>
+                          <td>{batch.discipline}</td>
+                          <td>{batch.year}</td>
+                          <td>
+                            <a
+                              href={`/programme_curriculum/view_curriculum?curriculum=${batch.id}`}
+                              className="course-link"
+                              style={{ textDecoration: "none" }}
+                            >
+                              {batch.curriculum} &nbsp;v
+                              {batch.curriculumVersion}
+                            </a>
+                          </td>
+                          <td>
+                            <a
+                              href={`/programme_curriculum/admin_edit_batch_form?batch=${batch.name}`}
+                              className="course-link"
+                              style={{ textDecoration: "none" }}
+                            >
+                              <Button variant="filled" color="green">
+                                Edit
+                              </Button>
+                            </a>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="5" style={{ textAlign: "center" }}>
+                          No curriculums found
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>

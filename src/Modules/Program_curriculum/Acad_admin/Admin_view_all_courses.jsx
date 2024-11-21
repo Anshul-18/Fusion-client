@@ -87,7 +87,14 @@ function Admin_view_all_courses() {
               </thead>
               <tbody>
                 {courses.map((course, index) => (
-                  <tr key={index} className="courses-table-row">
+                  <tr
+                    key={index}
+                    className="courses-table-row"
+                    style={{
+                      backgroundColor:
+                        index % 2 === 0 ? "#ffffff" : "#15abff1c", // Alternating row colors
+                    }}
+                  >
                     <td>
                       <a
                         href={`/programme_curriculum/admin_course/${course.id}`}
@@ -111,6 +118,7 @@ function Admin_view_all_courses() {
                 ))}
               </tbody>
             </Table>
+
             {/* </Card> */}
           </ScrollArea>
         </div>
